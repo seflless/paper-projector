@@ -7,8 +7,12 @@
 		body{
 			margin: 0px;
 		}
-		#input, #output {
-
+		#input, #output, #overlay {
+			transform-origin: left top;
+			transform:	scale3d(0.5,0.5,1.0);
+		}
+		#output{
+			margin-top: -540px;
 		}
 		#iframe1, #iframe2{
 			display: none;
@@ -39,7 +43,7 @@
 		<div class="handle"></div>
 		<div class="handle"></div>
 	</div>
-	<video id="input" src="scrum-board.mp4" autoplay></video>
+	<video id="input" src="scrum-board.mp4" autoplay controls></video>
 	<div id="output">
 
 	</div>
@@ -47,9 +51,9 @@
 	<script src="glfx.js"></script>
 	<script>
 
-	document.addEventListener('mousedown', (event) => {
+	/*document.addEventListener('mousedown', (event) => {
 		console.log(`${event.clientX},${event.clientY}`);
-	});
+	});*/
 	var video = document.getElementById('input');
 
 
