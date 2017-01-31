@@ -15,12 +15,14 @@
 			/*background: red;*/
 		}
 		.handle{
+			margin-left: -8px;
+    		margin-top: -8px;
 			position: absolute;
 			width: 16px;
 			height: 16px;
 			border-radius: 8px;
-			opacity: 0.6;
-			background: black;
+			opacity: 0.4;
+			background: red;
 		}
 	</style>
 </head>
@@ -54,6 +56,11 @@
 				504,330
 			];
 
+		document.querySelectorAll('.handle').forEach( (handle, idx) => {
+			handle.style.left = window.points[idx * 2]+'px';
+			handle.style.top = window.points[idx * 2 +1]+'px';
+		});
+
 		canvas.draw(texture).perspective(window.points, [
 				0,0,
 				640,0,
@@ -62,8 +69,8 @@
 			]).update();
 
 	    // replace the image with the canvas
-	    image.parentNode.insertBefore(canvas, image);
-	    image.parentNode.removeChild(image);
+	    image.parentNode.appendChild(canvas, image);
+	    //image.parentNode.removeChild(image);
 
 	    // Note: instead of swapping the <canvas> tag with the <img> tag
 	    // as done above, we could have just transferred the contents of
