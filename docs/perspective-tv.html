@@ -11,6 +11,9 @@
 			transform-origin: left top;
 			transform:	scale3d(0.5,0.5,1.0);
 		}
+		#overlay{
+			pointer-events: none;
+		}
 		#output{
 			margin-top: -540px;
 		}
@@ -102,9 +105,9 @@
 					0,1080,
 					1920,1080
 				]).update();
-			//requestAnimationFrame(render);
+			requestAnimationFrame(render);
 		}
-		setInterval(render, 1000/24);
+		requestAnimationFrame(render);
 
 	});
 
