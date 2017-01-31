@@ -8,9 +8,12 @@ There are two experiments in this repo:
    - Run `npm run video`, then open http://localhost:8080/video.html
    - Having issue with dewarping not working for some corner positions
    - [live demo](http://francoislaberge.com/paper-projector/video.html)
- 3. Perspective warp image using glfx.js (see docs/perspective.html)
+ 3. Perspective dewarp image using glfx.js (see docs/perspective.html)
    - Run `npm run video`, then open http://localhost:8080/perspective.html
    - [live demo](http://francoislaberge.com/paper-projector/perspective.html)
- 3. Perspective warp video using glfx.js (see docs/perspective-video.html)
+ 3. Perspective dewarp video using glfx.js (see docs/perspective-video.html)
    - Run `npm run video`, then open http://localhost:8080/perspective-video.html
    - [live demo](http://francoislaberge.com/paper-projector/perspective-video.html)
+ 4. Perspective dewarp tv using glfx.js (see docs/perspective-tv.html)
+   - Run `npm run video`, then open http://localhost:8080/perspective-tv.html
+   - [live demo](http://francoislaberge.com/paper-projector/perspective-tv.html)   
