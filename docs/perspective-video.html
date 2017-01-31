@@ -7,10 +7,15 @@
 		body{
 			margin: 0px;
 		}
-		#input, #output {
+		#input, #output, #overlay {
+			transform-origin: left top;
+			transform:	scale3d(0.5,0.5,1.0);
 		}
-		#iframe1, #iframe2{
-			display: none;
+		#overlay{
+			pointer-events: none;
+		}
+		#output{
+			margin-top: -540px;
 		}
 		#overlay{
 			position: absolute;
