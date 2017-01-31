@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Perspective Video</title>
+	<style>
+		body{
+			margin: 0px;
+		}
+		#input, #output {
+
+		}
+		#iframe1, #iframe2{
+			display: none;
+		}
+		#overlay{
+			position: absolute;
+			z-index: 10;
+			width: 1920px;
+			height: 1080px;
+			/*background: red;*/
+		}
+		.handle{
+			margin-left: -8px;
+    		margin-top: -8px;
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			border-radius: 8px;
+			opacity: 0.4;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="overlay">
+		<div class="handle"></div>
+		<div class="handle"></div>
+		<div class="handle"></div>
+		<div class="handle"></div>
+	</div>
+	<video id="input" src="paper.mp4" autoplay></video>
+	<div id="output">
+
+	</div>
+
+	<script src="glfx.js"></script>
+	<script>
+
+	document.addEventListener('mousedown', (event) => {
+		console.log(`${event.clientX},${event.clientY}`);
+	});
+	var video = document.getElementById('input');
+
+
+	var inited = false;
+	video.addEventListener('canplay', () => {
+		if(inited){
+			return;
+		}
+		inited = true;
+
+		// try to create a WebGL canvas (will fail if WebGL isn't supported)
+		try {
+			var canvas = fx.canvas();
+		} catch (e) {
+			alert(e);
+			return;
+		}
+
+		document.getElementById('output').appendChild(canvas);
+
+		function render(){
+			// convert the video to a texture
+			var texture = canvas.texture(video);
+
+			// apply the ink filter
+
+
+			//canvas.draw(texture).ink(0.25).update();
+			//
+
+			window.points = [
+					508,758,
+					1484,782,
+					8,970,
+					1818,1042
+				];
+
+			document.querySelectorAll('.handle').forEach( (handle, idx) => {
+				handle.style.left = window.points[idx * 2]+'px';
+				handle.style.top = window.points[idx * 2 +1]+'px';
+			});
+
+			canvas.draw(texture).perspective(window.points, [
+					0,0,
+					1920,0,
+					0,1080,
+					1920,1080
+				]).update();
+			requestAnimationFrame(render);
+		}
+		requestAnimationFrame(render);
+
+	});
+
+	</script>
+</body>
+</html>

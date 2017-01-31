@@ -11,3 +11,6 @@ There are two experiments in this repo:
  3. Perspective warp image using glfx.js (see docs/perspective.html)
    - Run `npm run video`, then open http://localhost:8080/perspective.html
    - [live demo](http://francoislaberge.com/paper-projector/perspective.html)
+ 3. Perspective warp video using glfx.js (see docs/perspective-video.html)
+   - Run `npm run video`, then open http://localhost:8080/perspective-video.html
+   - [live demo](http://francoislaberge.com/paper-projector/perspective-video.html)
