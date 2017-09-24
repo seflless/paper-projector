@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Yellow Pad</title>
+	<style>
+		body{
+			margin: 0px;
+			cursor: crosshair;
+		}
+		#input, #overlay {
+			transform-origin: left top;
+			transform:	scale3d(0.5,0.5,1.0);
+		}
+		#input{
+			/* opacity: 0.5; */
+		}
+		#overlay{
+			pointer-events: none;
+		}
+		#output{
+			
+			position: absolute;
+			/* background: red; */
+			margin-top: -1084px;
+			margin-left: 960px;
+		}
+		#iframe1, #iframe2{
+			display: none;
+		}
+		#overlay{
+			position: absolute;
+			z-index: 10;
+			width: 1080px;
+			height: 1920px;
+			/*background: red;*/
+		}
+		.handle{
+			margin-left: -8px;
+    		margin-top: -8px;
+			position: absolute;
+			width: 16px;
+			height: 16px;
+			border-radius: 8px;
+			opacity: 0.4;
+			background: turquoise;
+		}
+	</style>
+</head>
+<body>
+	<div id="overlay">
+		<div class="handle"></div>
+		<div class="handle"></div>
+		<div class="handle"></div>
+		<div class="handle"></div>
+	</div>
+	
+	<video id="input" src="yellow-pad.mp4" muted autoplay controls></video>
+	<div id="output">
+	</div>
+
+	<script src="glfx.js"></script>
+	<script src="mockup.js"></script>
+	<script>
+
+	const scale = 1.0;
+	window.points = [
+		// top left
+		750,124,
+		// top right
+		1300,122,
+		// bottom left
+		692,952,
+		// bottom right
+		1400,958
+	];
+
+	const VIDEO_WIDTH = 1920;
+	const VIDEO_HEIGHT = 1080;
+	const OUTPUT_WIDTH = 300;
+	const OUTPUT_HEIGHT = 150;
+
+	const canvas = document.getElementById('output');
+	canvas.style.width = VIDEO_WIDTH+'px';
+	canvas.style.height = VIDEO_HEIGHT+'px';
+	canvas.width = VIDEO_WIDTH;
+	canvas.height = VIDEO_HEIGHT;
+
+	window.points.forEach( (val,index) =>{
+		window.points[index] = val * scale;
+	});
+
+	let mouseIsDown = false;
+	document.addEventListener('mousedown', (event) => {
+		mouseIsDown = true;
+		console.log(`${event.clientX},${event.clientY+window.scrollY}`);
+	});
+	let currentControlledIndex = 0;
+	document.addEventListener('mousemove', (event) => {
+		if(true){//!mouseIsDown){
+			return;
+		}
+		window.points[currentControlledIndex*2] = event.clientX*scale;
+		window.points[currentControlledIndex*2+1] = (event.clientY+window.scrollY)*scale;
+	});
+	document.addEventListener('mouseup', (event) => {
+		mouseIsDown = false;
+	});
+	var video = document.getElementById('input');
+
+	document.addEventListener('keydown', (event)=>{
+		if(event.keyCode === 32){
+			event.preventDefault();
+			event.stopPropagation();
+			currentControlledIndex = (currentControlledIndex+1)%4;
+		}
+	});
+
+
+	var inited = false;
+	video.addEventListener('canplay', () => {
+		if(inited){
+			return;
+		}
+		inited = true;
+
+		// try to create a WebGL canvas (will fail if WebGL isn't supported)
+		try {
+			var canvas = fx.canvas();
+		} catch (e) {
+			alert(e);
+			return;
+		}
+
+
+		mockup({
+			container: document.getElementById('output'),
+			template: "ipad-feet-up.png",
+			element: canvas,
+			corners: [
+				47, 66,
+				261, 46,
+				175, 374,
+				387,332
+			]
+		})
+
+		function render(){
+			// convert the video to a texture
+			var texture = canvas.texture(video);
+
+			// apply the ink filter
+
+
+			//canvas.draw(texture).ink(0.25).update();
+			//
+			
+
+			document.querySelectorAll('.handle').forEach( (handle, idx) => {
+				handle.style.left = (window.points[idx * 2]*scale)+'px';
+				handle.style.top = (window.points[idx * 2 +1]*scale)+'px';
+			});
+
+			const left = (VIDEO_WIDTH-OUTPUT_WIDTH)/2;
+			const top = (VIDEO_HEIGHT-OUTPUT_HEIGHT)/2;
+			// canvas.style.marginLeft = left+'px';
+			// canvas.style.marginTop = top+'px';
+			canvas.style.width = OUTPUT_WIDTH+'px';
+			canvas.style.height = OUTPUT_HEIGHT+'px';
+			canvas.draw(texture).perspective(window.points, [
+					0,0,
+					VIDEO_WIDTH,0,
+					0,VIDEO_HEIGHT,
+					VIDEO_WIDTH,VIDEO_HEIGHT
+				]).update();
+			requestAnimationFrame(render);
+		}
+		requestAnimationFrame(render);
+
+	});
+
+	</script>
+</body>
+</html>
