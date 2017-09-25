@@ -8,24 +8,30 @@ function mockup(options){
     // Add the target element into the container
     options.container.appendChild(options.element);
     options.element.style.transformOrigin = "0 0";
+    options.element.style.position = "absolute";
 
     
     // Create it's template image, insert it after so it's a mask
     // in front of the warped element
-    const image = document.createElement('img');
-    image.src = options.template;
-    options.container.appendChild(image);
-
-    //578, 293
-
-    options.element.style.position = "absolute";
-    image.style.position = "absolute";
-    //image.style.opacity = '0.5';
+    if( options.template){
+        const image = document.createElement('img');
+        image.src = options.template;
+        options.container.appendChild(image);
+        image.style.position = "absolute";
+    }
 
     // Do the actual warping
     transform2d(options.element,
         options.corners[0], options.corners[1], options.corners[2], options.corners[3],
         options.corners[4], options.corners[5], options.corners[6], options.corners[7] );
+
+    return {
+        update: (corners) => {
+            transform2d(options.element,
+                corners[0], corners[1], corners[2], corners[3],
+                corners[4], corners[5], corners[6], corners[7] );
+        }
+    }
 }
 
 var shiftX = 2;

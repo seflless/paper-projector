@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tracking.js - color with camera</title>
+  <link rel="stylesheet" href="assets/demo.css">
+
+  <script src="tracking-min.js"></script>
+  <script src="stats.min.js"></script>
+  <script src="mockup.js"></script>
+
+  <style>
+    #container{
+        width: 600px;
+        margin: 20px auto;
+    }
+    video, canvas {
+        position: absolute;
+    }
+  </style>
+</head>
+<body>
+    <div id="container">
+        <video id="video" width="1280" height="960" preload autoplay loop muted controls></video>
+        <canvas id="canvas" width="1280" height="960"></canvas>
+    </div>
+
+  <script>
+    window.onload = function() {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+
+      let corners = [
+          0, 0,
+          100, 0,
+          0, 100,
+          100, 100
+      ];
+      
+      let image = document.createElement('img');
+      image.src = "grid.png";
+      image.style.opacity = 1.0;
+
+      let warped = mockup({
+          container: document.getElementById('container'),
+          element: image,
+          corners
+      });
+
+      const customColors = {
+              //green: [72, 153, 74],
+              //red: [211, 77, 77]
+
+              // arrow orange
+              // orange: [178, 77, 49] 
+
+              // pad orange
+              //orange: [202, 142, 103]
+            };
+      const customTolerance = 70;
+      let colors = [
+              // pink
+              'magenta', 
+              // Disabling for now, there seems to be too much yellow in our house (Might need to try a different room)
+              //'yellow'
+          ];
+
+
+      for(let color in customColors){
+        tracking.ColorTracker.registerColor(color, function(r, g, b) {
+
+            if( Math.abs(r-customColors[color][0]) < customTolerance &&
+                Math.abs(g-customColors[color][1]) < customTolerance &&
+                Math.abs(b-customColors[color][2]) < customTolerance ) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        colors.push(color);
+      }
+      
+
+      var tracker = new tracking.ColorTracker(colors);
+   
+      tracking.track('#video', tracker, { camera: true });
+
+      tracker.on('track', function(event) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+
+          event.data.forEach(function(rect) {
+              if (rect.color === 'custom') {
+                rect.color = tracker.customColor;
+              }
+
+              context.strokeStyle = rect.color;
+              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+              context.font = '11px Helvetica';
+              context.fillStyle = "#fff";
+              context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+              context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+          });
+          
+          if( event.data.length === 4 ){
+              event.data.forEach( (rect, index) => {
+                  corners[ index * 2 ] = rect.x + rect.width/2;
+                  corners[ index * 2 + 1 ] = rect.y + rect.height/2;
+              })
+              warped.update(corners);
+              image.style.opacity = 1.0;
+          } else {
+              image.style.opacity = 0.0;
+          }
+      });
+
+     //initGUIControllers(tracker);
+    };
+  </script>
+
+</body>
+</html>
