@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "budo index.js:bundle.js",
-    "video": "http-server docs -p 8080"
+    "start": "http-server docs -p 8080"
   },
   "author": "Francois Laberge <francoislaberge@gmail.com>",
   "devDependencies": {
