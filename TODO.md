@@ -11,6 +11,17 @@
        - https://jeromeetienne.github.io/AR.js/three.js/examples/mobile-performance.html
      - Robustness:
        - This one seems to work better than my adhoc color tracker using tracking.js
+     - Amazing Demos
+       - 3D tracked object: with shadows: 
+         - https://jeromeetienne.github.io/AR.js/aframe/examples/demo-3dio/basic.html
+       - Minecraft looking miniworld: 
+         - https://jeromeetienne.github.io/AR.js/aframe/examples/demo-aframe-logo/aframe-logo-model.html
+       - Dancing anime character (with drop shadows)
+         - https://jeromeetienne.github.io/AR.js/aframe/examples/demo-hatsune-miku/
+       - Clown's nose looking one (covers marker which is cool)
+         - https://jeromeetienne.github.io/AR.js/aframe/examples/marker-camera.html
+       - Camera controls with grid
+         - https://jeromeetienne.github.io/AR.js/aframe/examples/vr-camera-controls.html
    - Tracking.js
      - https://trackingjs.com/
      - I used colored stickers and put them on the corners of a white card. See docs/matte.html
