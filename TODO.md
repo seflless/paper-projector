@@ -3,9 +3,14 @@
 #### Notes
  - Evaluated
    - AR.js
-     - https://github.com/jeromeetienne/AR.js/
-     - Print out: https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg
-     - Robustness: This one seems to work better than my adhoc color tracker using tracking.js
+     - Repo:
+       - https://github.com/jeromeetienne/AR.js/
+     - Print out:
+       - https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg
+     - Demo
+       - https://jeromeetienne.github.io/AR.js/three.js/examples/mobile-performance.html
+     - Robustness:
+       - This one seems to work better than my adhoc color tracker using tracking.js
    - Tracking.js
      - https://trackingjs.com/
      - I used colored stickers and put them on the corners of a white card. See docs/matte.html
