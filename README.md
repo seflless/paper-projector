@@ -17,3 +17,9 @@ There are two experiments in this repo:
  4. Perspective dewarp tv using glfx.js (see docs/perspective-tv.html)
    - Run `npm run video`, then open http://localhost:8080/perspective-tv.html
    - [live demo](http://francoislaberge.com/paper-projector/perspective-tv.html)   
+
+## Contributing
+
+**Requirements**
+ - Node.js
+ - Yarn

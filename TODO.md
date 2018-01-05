@@ -29,6 +29,9 @@
      - https://github.com/cozmo/jsQR
      - I printed out a QR code generator, that used the https://google.com URL: https://webqr.com/create.html
      - See demo here once you have the QR code: https://s3-us-west-2.amazonaws.com/templaedhel/jsQR/features.html
+   - Aruco
+    - [JS Implementation](https://github.com/jcmellado/js-aruco)
+    - [Marker generator](https://www.npmjs.com/package/aruco-marker)
  - Try multi markers
    - https://medium.com/arjs/area-learning-with-multi-markers-in-ar-js-1ff03a2f9fbe
    - https://jeromeetienne.github.io/AR.js/three.js/examples/multi-markers/examples/learner.html

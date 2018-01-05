@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server docs -p 8080"
+    "start": "http-server docs -p 8080",
+    "build": "cp node_modules/aruco-marker/aruco-marker.js docs/dist"
   },
   "author": "Francois Laberge <francoislaberge@gmail.com>",
   "devDependencies": {
     "budo": "^4.1.0"
   },
   "dependencies": {
-    "http-server": "^0.9.0",
+    "aruco-marker": "^2.0.0",
     "getusermedia": "^1.3.5",
+    "http-server": "^0.9.0",
     "simple-peer": "^5.11.4"
   }
 }

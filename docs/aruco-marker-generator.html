@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Aruco Marker Generator</title>
+  <script src="dist/aruco-marker.js"></script>
+
+  <style>
+    body{
+         margin: 0px;
+    }
+    span{
+        display: inline-block;
+        padding: 20px;
+    }
+    #marker{
+        width: 1080px;
+        margin: 0px auto;
+    }
+  </style>
+</head>
+<body>
+    <div id="marker"></div>
+    <script>
+        addMarker(683, 150);
+        addMarker(942, 150);
+
+        addMarker(683, 200);
+        addMarker(942, 200);
+        
+        addMarker(683, 250);
+        addMarker(942, 250);
+
+        for(let i = 0; i<1000; i++){
+          //  addMarker(i, 20);
+        }
+
+        function addMarker(id, size){
+            const div = document.createElement('span');
+            //div.id=id;
+            var myMarker = new ArucoMarker(id);
+            var svgImage = myMarker.toSVG(`${size}px`); // the size is optional 
+            div.innerHTML = svgImage;
+            document.getElementById('marker').appendChild(div);
+        }
+    </script>
+</body>
+</html>
