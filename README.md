@@ -7,7 +7,6 @@ There are two experiments in this repo:
  2. Dewarping video (see docs/video.html)
    - Run `npm run video`, then open http://localhost:8080/video.html
    - Having issue with dewarping not working for some corner positions
-   - 
    - [live demo](https://seflless.github.io/paper-projector/video.html)
  3. Perspective dewarp image using glfx.js (see docs/perspective.html)
    - Run `npm run video`, then open http://localhost:8080/perspective.html
