@@ -1,25 +1,26 @@
 # Paper Projector
 Exploring streaming paper that is being drawn on as in a video call.
 
-There are two experiments in this repo:
- 1. WebRTC Component
-   - [https://www.youtube.com/watch?v=ieBtXwHvoNk](https://www.youtube.com/watch?v=ieBtXwHvoNk)
- 2. Dewarping video (see docs/video.html)
-   - Run `npm run video`, then open http://localhost:8080/video.html
-   - Having issue with dewarping not working for some corner positions
-   - [live demo](https://seflless.github.io/paper-projector/video.html)
- 3. Perspective dewarp image using glfx.js (see docs/perspective.html)
-   - Run `npm run video`, then open http://localhost:8080/perspective.html
-   - [live demo](https://seflless.github.io/paper-projector/perspective.html)
- 3. Perspective dewarp video using glfx.js (see docs/perspective-video.html)
-   - Run `npm run video`, then open http://localhost:8080/perspective-video.html
-   - [live demo](https://seflless.github.io/paper-projector/perspective-video.html)
- 4. Perspective dewarp tv using glfx.js (see docs/perspective-tv.html)
-   - Run `npm run video`, then open http://localhost:8080/perspective-tv.html
-   - [live demo](https://seflless.github.io/paper-projector/perspective-tv.html)   
+## Live Demo
+This [live demo](https://seflless.github.io/paper-projector/perspective-tv.html) dewarps the content of a monitor shot from a mobile phone.
+
+## Requirements
+ - [Node.js](https://nodejs.org/en/download)
+ - [Yarn](https://yarnpkg.com/)
+
+## Usage
+
+```
+git clone
+cd paper-projector
+yarn
+yarn video
+```
+
+## Todo
+Add support for streaming the camera feed of a phone to another device for dewarping, this way you set your phone anywhere to create a 
+projected space that you can then run computer vision on from a desktop web app. So take a look at something like
+[npmjs.com/simple-peer](https://www.npmjs.com/package/simple-peer) to easily use WebRTC for the video streaming.
 
 ## Contributing
 
-**Requirements**
- - Node.js
- - Yarn
