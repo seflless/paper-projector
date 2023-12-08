@@ -17,6 +17,7 @@
         pointer-events: none;
       }
       #output-wrapper {
+        pointer-events: none;
         transform: rotate(90deg) translate(-152px, 543px) scaleX(1.5);
 
         position: absolute;
@@ -28,6 +29,7 @@
         display: none;
       }
       #overlay {
+        display: none;
         position: absolute;
         z-index: 10;
         width: 1080px;
@@ -55,7 +57,7 @@
       <div class="handle">3</div>
       <div class="handle">4</div>
     </div>
-    <video id="input" src="lined-paper.mp4" muted autoplay controls></video>
+    <video id="input" src="lined-paper.mp4" muted controls></video>
     <div id="output-wrapper">
       <div id="output"></div>
     </div>
@@ -68,20 +70,20 @@
       var video = document.getElementById("input");
 
       let num = 4;
-      document.addEventListener("pointerdown", (event) => {
-        console.log(
-          `${(event.clientX * devicePixelRatio).toFixed(1)},${(
-            event.clientY * devicePixelRatio
-          ).toFixed(1)}`
-        );
-        const handle = document.createElement("div");
-        handle.classList.add("handle");
-        handle.innerText = num;
-        handle.style.left = event.clientX * devicePixelRatio + "px";
-        handle.style.top = event.clientY * devicePixelRatio + "px";
-        document.getElementById("overlay").appendChild(handle);
-        num++;
-      });
+      // document.addEventListener("pointerdown", (event) => {
+      //   console.log(
+      //     `${(event.clientX * devicePixelRatio).toFixed(1)},${(
+      //       event.clientY * devicePixelRatio
+      //     ).toFixed(1)}`
+      //   );
+      //   const handle = document.createElement("div");
+      //   handle.classList.add("handle");
+      //   handle.innerText = num;
+      //   handle.style.left = event.clientX * devicePixelRatio + "px";
+      //   handle.style.top = event.clientY * devicePixelRatio + "px";
+      //   document.getElementById("overlay").appendChild(handle);
+      //   num++;
+      // });
       var inited = false;
       video.addEventListener("canplay", () => {
         if (inited) {
