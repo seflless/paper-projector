@@ -13,10 +13,10 @@ There are two experiments in this repo:
    - [live demo](https://seflless.github.io/paper-projector/perspective.html)
  3. Perspective dewarp video using glfx.js (see docs/perspective-video.html)
    - Run `npm run video`, then open http://localhost:8080/perspective-video.html
-   - [live demo](http://francoislaberge.com/paper-projector/perspective-video.html)
+   - [live demo](https://seflless.github.io/paper-projector/perspective-video.html)
  4. Perspective dewarp tv using glfx.js (see docs/perspective-tv.html)
    - Run `npm run video`, then open http://localhost:8080/perspective-tv.html
-   - [live demo](http://francoislaberge.com/paper-projector/perspective-tv.html)   
+   - [live demo](https://seflless.github.io/paper-projector/perspective-tv.html)   
 
 ## Contributing
 
